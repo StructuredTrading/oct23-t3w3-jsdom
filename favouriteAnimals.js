@@ -19,6 +19,8 @@ let animals = [
 ];
 
 function createAnimalList(){
+
+    animals = [...new Set(animals)];
     animals.forEach((animal) => {
         console.log("animal: " + animal);
         // 1. Create a li element with animal value as it's text
@@ -45,6 +47,7 @@ function createAnimalList(){
 function removeAnimalFromList(targetAnimalId){
     // 1. Find element in the list with matching ID
     let targetListItem = document.getElementById(targetAnimalId);
+    targetListItem = document.getElementsByClassName
     targetListItem.remove();
 
     // 2. Check if ID is in array of animals
