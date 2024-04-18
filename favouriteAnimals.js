@@ -18,7 +18,7 @@ let animals = [
     "otter"
 ];
 
-function createAnimalList(){
+function createAnimalList() {
 
     animals = [...new Set(animals)];
     animals.forEach((animal) => {
@@ -44,7 +44,7 @@ function createAnimalList(){
 }
 
 
-function removeAnimalFromList(targetAnimalId){
+function removeAnimalFromList(targetAnimalId) {
     // 1. Find element in the list with matching ID
     let targetListItem = document.getElementById(targetAnimalId);
     // targetListItem = document.getElementsByClassName
@@ -71,5 +71,26 @@ function removeAnimalFromList(targetAnimalId){
 
     // 4. Update or wipe and rebuild the animal list HTML
 }
+
+
+function addAnimalToList(event, targetInputId) {
+    // 1. Find the input field matching targetInputId
+    let targetInputField = document.getElementById(targetInputId);
+
+    // 2. Get the text value from the input field that we found
+    let foundInputFieldValue = targetInputField.value;
+    console.log("Input field value to add to list is: " + foundInputFieldValue);
+
+    // 3. Push the text value into the animals array
+    animals.push(foundInputFieldValue);
+
+    // 4. Delete the animal list HTML elements and recreate them
+    createAnimalList();
+}
+
+let fakeFormButton = document.getElementById("fakeform-submit")
+fakeFormButton.addEventListener("click", (event) => {
+    addAnimalToList(event, "fakeform-addAnimal")
+});
 
 console.log("Hello from the imported code file!");
