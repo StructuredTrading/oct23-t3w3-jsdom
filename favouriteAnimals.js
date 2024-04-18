@@ -21,6 +21,11 @@ let animals = [
 function createAnimalList() {
 
     animals = [...new Set(animals)];
+
+    // 0. Find the existing list HTML and reset it
+    let rootOlNode = document.querySelector("ol");
+    rootOlNode.innerHTML = "";
+
     animals.forEach((animal) => {
         console.log("animal: " + animal);
         // 1. Create a li element with animal value as it's text
@@ -38,7 +43,6 @@ function createAnimalList() {
         newList.appendChild(removeItemButton);
 
         //2. Find the ol element that exists in the page and append the li into it
-        let rootOlNode = document.querySelector("ol");
         rootOlNode.appendChild(newList);
     });
 }
@@ -74,6 +78,9 @@ function removeAnimalFromList(targetAnimalId) {
 
 
 function addAnimalToList(event, targetInputId) {
+    // This prevents forms from reloading the page:
+    event.preventDefault();
+
     // 1. Find the input field matching targetInputId
     let targetInputField = document.getElementById(targetInputId);
 
@@ -91,6 +98,11 @@ function addAnimalToList(event, targetInputId) {
 let fakeFormButton = document.getElementById("fakeform-submit")
 fakeFormButton.addEventListener("click", (event) => {
     addAnimalToList(event, "fakeform-addAnimal")
+});
+
+let realFormButton = document.getElementById("realform-submit")
+realFormButton.addEventListener("click", (event) => {
+    addAnimalToList(event, "realform-addAnimal")
 });
 
 console.log("Hello from the imported code file!");
